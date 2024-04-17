@@ -53,57 +53,6 @@
   </a-assets>
   <a-videosphere src='#back_v'></a-videosphere>
 
-      document.addEventListener("DOMContentLoaded", function(event) {
-      var scene = document.querySelector("a-scene");
-      var video = document.getElementById("bird");
-
-      if (scene.hasLoaded) {
-        run();
-      } else {
-        scene.addEventListener("loaded", run);
-      }
-
-      function run () {
-        scene.querySelector("#playButton").addEventListener("click", function(e){
-              video.play();
-          });
-      }
-
-    })
-
-    AFRAME.registerComponent('click-stop', {
-    init: function () {
-      this.el.addEventListener('click', function (event) {
-        document.getElementById("bird").pause();
-      });
-    }
-  });
-
-      <a-entity
-    id="musicButton"
-    click-music
-    geometry="primitive: plane; height: 1; width: 1"
-    material="src: #music_off"
-    position="0 -5 -13.26"
-    rotation="0 0 0"
-    ></a-entity>
-
-   AFRAME.registerComponent('click-music', {
-  init: function () {
-    this.el.addEventListener('click', function (event) {
-      if(video.muted){
-        //video.muted = !video.muted; //this also works
-        video.muted = false;
-        this.setAttribute('material', 'src', "#music_on");
-      }else{
-        video.muted = true;
-        this.setAttribute('material', 'src', "#music_off");
-      }
-    });
-  }
-});
-
-      
   <!--
       <a-text
   position="0 0 -50"
