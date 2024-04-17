@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
     <title>kae-ar</title>
     <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
     <script src="https://unpkg.com/aframe-look-at-component@0.8.0/dist/aframe-look-at-component.min.js"></script>
@@ -20,7 +21,22 @@
         <a-image src="assets/kae3.jpg" width="4" height="4" rotation="0, 180, 0" position="0 -0.2 6"></a-image>
         <a-image src="assets/kae4.jpg" width="4" height="4" rotation="0, 90, 0" position="-5 -0.2 0"></a-image>
  </a-entity>
+<a-entity
+    id="playButton"
+    geometry="primitive: plane; height: 1; width: 1"
+    material="src: #play"
+    position="-7.3 -1.2 0.6"
+    rotation="0 90 0"
+    ></a-entity>
 
+    <a-entity
+    id="stopButton"
+    click-stop
+    geometry="primitive: plane; height: 1; width: 1"
+    material="src: #stop"
+    position="-7.3 -1.2 -0.67"
+    rotation="0 90 0"
+    ></a-entity>
 <a-assets>
                 <video
                     id="kae"
@@ -36,6 +52,57 @@
                 ></video>
   </a-assets>
   <a-videosphere src='#back_v'></a-videosphere>
+
+      document.addEventListener("DOMContentLoaded", function(event) {
+      var scene = document.querySelector("a-scene");
+      var video = document.getElementById("bird");
+
+      if (scene.hasLoaded) {
+        run();
+      } else {
+        scene.addEventListener("loaded", run);
+      }
+
+      function run () {
+        scene.querySelector("#playButton").addEventListener("click", function(e){
+              video.play();
+          });
+      }
+
+    })
+
+    AFRAME.registerComponent('click-stop', {
+    init: function () {
+      this.el.addEventListener('click', function (event) {
+        document.getElementById("bird").pause();
+      });
+    }
+  });
+
+      <a-entity
+    id="musicButton"
+    click-music
+    geometry="primitive: plane; height: 1; width: 1"
+    material="src: #music_off"
+    position="0 -5 -13.26"
+    rotation="0 0 0"
+    ></a-entity>
+
+   AFRAME.registerComponent('click-music', {
+  init: function () {
+    this.el.addEventListener('click', function (event) {
+      if(video.muted){
+        //video.muted = !video.muted; //this also works
+        video.muted = false;
+        this.setAttribute('material', 'src', "#music_on");
+      }else{
+        video.muted = true;
+        this.setAttribute('material', 'src', "#music_off");
+      }
+    });
+  }
+});
+
       
   <!--
       <a-text
