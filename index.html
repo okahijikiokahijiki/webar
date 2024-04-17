@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random AR Objects within GPS Range</title>
+    <!-- A-FrameとAR.jsのスクリプトを読み込む -->
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <script src="https://cdn.rawgit.com/jeromeetienne/AR.js/2.0.8/aframe/build/aframe-ar.js"></script>
+</head>
+<body style="margin: 0; overflow: hidden;">
+    <!-- AR.jsを使用したARシーンを作成 -->
+    <a-scene embedded arjs>
+        <!-- カメラの設定 -->
+        <a-entity camera gps-camera></a-entity>
+        
+        <!-- GPS位置情報に基づいてランダムな位置にARコンテンツを表示する -->
+        <a-entity gps-entity-place="latitude: 35.6814; longitude: 139.7671; radius: 10;">
+            <!-- ランダムな位置にボックスを表示 -->
+            <a-entity position="{{ getRandomPosition() }}">
+                <a-box material="color: red;"></a-box>
+            </a-entity>
+        </a-entity>
+    </a-scene>
+
+    <script>
+        // ランダムな位置を計算する関数
+        function getRandomPosition() {
+            var radius = 0.0001; // GPS位置の幅（半径）
+            var latitude = 35.6814; // 八重洲口の緯度
+            var longitude = 139.7671; // 八重洲口の経度
+            
+            // ランダムな緯度と経度を計算
+            var randomLatitude = latitude + (Math.random() * 2 * radius - radius);
+            var randomLongitude = longitude + (Math.random() * 2 * radius - radius);
+            
+            // ARコンテンツの位置を返す
+            return randomLatitude + " 0 " + randomLongitude;
+        }
+    </script>
+</body>
+</html>
