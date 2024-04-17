@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>ar</title>
+    <title>kae-ar</title>
     <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
     <script src="https://unpkg.com/aframe-look-at-component@0.8.0/dist/aframe-look-at-component.min.js"></script>
     <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
@@ -23,7 +23,7 @@
 
 <a-assets>
                 <video
-                    id="suiden"
+                    id="kae"
                     src="assets/kae.mov"
                     preload="auto"
                     response-type="arraybuffer"
@@ -35,7 +35,10 @@
                     playsinline
                 ></video>
   </a-assets>
-  <a-text
+  <a-videosphere src='#back_v'></a-videosphere>
+      
+  <!--
+      <a-text
   position="0 0 -50"
   rotation="0 0 0"
   letterSpacing="50"
@@ -48,7 +51,8 @@
   gps-entity-place="latitude: 38.13867179361112; longitude: 140.28367478283755;"
   >
   </a-text>
-
+  -->
+      
 <a-camera gps-camera="minDistance:10; maxDistance:50" rotation-reader> </a-camera>
     </a-scene>
   </body>
