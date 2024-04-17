@@ -13,7 +13,13 @@
     <a-scene
       vr-mode-ui="enabled: false"
       arjs="sourceType: webcam; videoTexture: true; debugUIEnabled: false;"
-    >
+        <a-asset-item
+                    id="piyo-asset"
+                    src="assets/piyo.glb"
+          >
+        </a-asset-item>
+      
+      >
   <a-text
   position="0 0 -50"
   rotation="0 0 0"
@@ -27,14 +33,7 @@
   gps-entity-place="latitude: 38.13867179361112; longitude: 140.28367478283755;"
   >
   </a-text>
-  <a-image
-  src="assets/piyo.glb"
-  scale="1 1 1"
-  class="clickable"
-  rotation="0 0 -70"
-  gesture-handler
-  >
-  </a-image>
+
 <a-camera gps-camera="minDistance:10; maxDistance:50" rotation-reader> </a-camera>
     </a-scene>
   </body>
